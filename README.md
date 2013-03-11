@@ -3,10 +3,10 @@ MapReduce Archetype
 
 Quickly setup a MapReduce Maven artifact that includes: 
 
- - Mapper and Reducer classes
+ - A single Job class with inner Mapper and Reducer classes
  - ...and the corresponding unit test classes based on MRUnit 
  - job configuration
- - dependency setup using Cloudera's Hadoop dist
+ - dependency setup using Apache's Hadoop dist
  - a sample run script
  
 
@@ -16,7 +16,7 @@ Install
 You install the archetype on your own box by cloning the repo and running 
 the Maven installer. Like this: 
 
-    git clone git://github.com/robinsp/mapreduce-archetype.git 
+    git clone git://github.com/drewfarris/mapreduce-archetype.git 
     cd mapreduce-archetype
     mvn install
     

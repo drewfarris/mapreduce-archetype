@@ -13,7 +13,7 @@ import org.apache.hadoop.mrunit.mapreduce.ReduceDriver;
 import org.junit.Before;
 import org.junit.Test;
 
-import ${package}.${main-class-name}Reducer;
+import ${package}.${main-class-name}Job.${main-class-name}Reducer;
 
 public class ${main-class-name}ReducerTest extends TestCase {
 	private Reducer<Text, IntWritable, Text, IntWritable> reducer;
