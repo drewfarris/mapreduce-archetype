@@ -64,7 +64,7 @@
                     </descriptors>
                     <archive>
                         <manifest>
-                            <mainClass>${package}.${main-class-name}</mainClass>
+                            <mainClass>${package}.${main-class-name}Job</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
