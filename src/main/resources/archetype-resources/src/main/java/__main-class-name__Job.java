@@ -22,6 +22,10 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
+
 public class ${main-class-name}Job extends Configured implements Tool {
 
     public static class ${main-class-name}Mapper
@@ -55,7 +59,18 @@ public class ${main-class-name}Job extends Configured implements Tool {
         }
     }
 
+    @Parameter(names = { "-i", "--input" }, description = "Input Directory", required = true)
+    private String inputDir;
+
+    @Parameter(names = { "-o", "--output" }, description = "Output Directory", required = true)
+    private String outputDir;
+
+    @Parameter(names = "--help", help = true)
+    private boolean help;
+
     public int run(String [] args) throws Exception {
+        if (!parseArgs(args)) return -1;
+        
         Job job = new Job(getConf());
         job.setJarByClass(${main-class-name}Job.class);
         job.setJobName("${artifactId}");
@@ -70,11 +85,36 @@ public class ${main-class-name}Job extends Configured implements Tool {
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputFormatClass(TextOutputFormat.class);
 
-        FileInputFormat.setInputPaths(job, new Path(args[0]));
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        FileInputFormat.setInputPaths(job, new Path(inputDir));
+        FileOutputFormat.setOutputPath(job, new Path(outputDir));
 
         boolean success = job.waitForCompletion(true);
         return success ? 0 : 1;
+    }
+
+    public boolean parseArgs(String[] args) {
+        JCommander jc = new JCommander(this);
+        try {
+            jc.parse(args);
+            if (help) {
+                usage(null, jc);
+                return false;
+            }
+        }
+        catch (ParameterException ex) {
+            usage(ex.getMessage(), jc);
+            return false;
+        }
+        return true;
+    }
+
+    public static void usage(String message, JCommander jc) {
+        if (message != null) 
+            System.err.println(message);
+        ToolRunner.printGenericCommandUsage(System.err);
+        StringBuilder out = new StringBuilder();
+        jc.usage(out);
+        System.err.println(out);
     }
 
     public static void main(String[] args) throws Exception {
