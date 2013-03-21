@@ -41,8 +41,6 @@
     </dependencies>
 
     <build>
-        <finalName>${project.name}</finalName>
-
         <plugins>
 
             <plugin>
