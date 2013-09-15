@@ -14,16 +14,16 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mrunit.mapreduce.MapDriver;
 
-import ${package}.${main-class-name}Job.${main-class-name}Mapper;
+import ${package}.${job-base-name}Job.${job-base-name}Mapper;
 
-public class ${main-class-name}MapperTest extends TestCase {
+public class ${job-base-name}MapperTest extends TestCase {
 	private static final IntWritable ONE_OCCURANCE = new IntWritable(1);
 	private Mapper<LongWritable, Text, Text, IntWritable> mapper;
     private MapDriver<LongWritable, Text, Text, IntWritable> driver;
 
     @Before 
     public void setUp() {
-        mapper = new ${main-class-name}Mapper();
+        mapper = new ${job-base-name}Mapper();
         driver = new MapDriver<LongWritable, Text, Text, IntWritable>(mapper);
     }
 

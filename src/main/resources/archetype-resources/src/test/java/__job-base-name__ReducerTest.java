@@ -13,15 +13,15 @@ import org.apache.hadoop.mrunit.mapreduce.ReduceDriver;
 import org.junit.Before;
 import org.junit.Test;
 
-import ${package}.${main-class-name}Job.${main-class-name}Reducer;
+import ${package}.${job-base-name}Job.${job-base-name}Reducer;
 
-public class ${main-class-name}ReducerTest extends TestCase {
+public class ${job-base-name}ReducerTest extends TestCase {
 	private Reducer<Text, IntWritable, Text, IntWritable> reducer;
 	private ReduceDriver<Text, IntWritable, Text, IntWritable> driver;
 	
 	@Before
 	public void setUp() {
-		reducer = new ${main-class-name}Reducer();
+		reducer = new ${job-base-name}Reducer();
 		driver = new ReduceDriver<Text, IntWritable, Text, IntWritable>(reducer);
 	}
 	

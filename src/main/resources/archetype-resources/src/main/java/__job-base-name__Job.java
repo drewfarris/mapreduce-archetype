@@ -26,9 +26,9 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 
-public class ${main-class-name}Job extends Configured implements Tool {
+public class ${job-base-name}Job extends Configured implements Tool {
 
-    public static class ${main-class-name}Mapper
+    public static class ${job-base-name}Mapper
         extends Mapper<LongWritable, Text, Text, IntWritable> {
 
         private final static IntWritable one = new IntWritable(1);
@@ -46,7 +46,7 @@ public class ${main-class-name}Job extends Configured implements Tool {
         }
     }
 
-    public static class ${main-class-name}Reducer
+    public static class ${job-base-name}Reducer
     extends Reducer<Text, IntWritable, Text, IntWritable> {
         public void reduce(Text key, Iterable<IntWritable> values,
                 Context context) throws IOException, InterruptedException {
@@ -72,15 +72,15 @@ public class ${main-class-name}Job extends Configured implements Tool {
         if (!parseArgs(args)) return -1;
         
         Job job = new Job(getConf());
-        job.setJarByClass(${main-class-name}Job.class);
+        job.setJarByClass(${job-base-name}Job.class);
         job.setJobName("${artifactId}");
 
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 
-        job.setMapperClass(${main-class-name}Mapper.class);
-        job.setCombinerClass(${main-class-name}Reducer.class);
-        job.setReducerClass(${main-class-name}Reducer.class);
+        job.setMapperClass(${job-base-name}Mapper.class);
+        job.setCombinerClass(${job-base-name}Reducer.class);
+        job.setReducerClass(${job-base-name}Reducer.class);
 
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputFormatClass(TextOutputFormat.class);
@@ -118,7 +118,7 @@ public class ${main-class-name}Job extends Configured implements Tool {
     }
 
     public static void main(String[] args) throws Exception {
-        int ret = ToolRunner.run(new ${main-class-name}Job(), args);
+        int ret = ToolRunner.run(new ${job-base-name}Job(), args);
         System.exit(ret);
     }
 }
