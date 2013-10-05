@@ -3,6 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package};
 
+import java.io.IOException;
 import junit.framework.TestCase;
 
 import org.junit.Before;
@@ -28,7 +29,7 @@ public class ${job-base-name}MapperTest extends TestCase {
     }
 
     @Test
-    public void testWordCount() {
+    public void testWordCount() throws IOException {
     	String line = "Hello World Bye World";
 				
 		driver.withInput(UNUSED_LONG_KEY, new Text(line) )

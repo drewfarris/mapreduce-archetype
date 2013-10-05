@@ -7,7 +7,7 @@
 
   <groupId>drew</groupId>
   <artifactId>mapreduce-archetype</artifactId>
-  <version>2</version>
+  <version>3</version>
   <packaging>maven-archetype</packaging>
 
   <name>mapreduce-archetype</name>

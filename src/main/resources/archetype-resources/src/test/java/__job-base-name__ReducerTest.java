@@ -3,6 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package};
 
+import java.io.IOException;
 import java.util.Vector;
 import junit.framework.TestCase;
 
@@ -26,7 +27,7 @@ public class ${job-base-name}ReducerTest extends TestCase {
 	}
 	
 	@Test
-	public void testCountOccurancesOfWordFromListOfOnes() {
+	public void testCountOccurancesOfWordFromListOfOnes() throws IOException {
 		int expectedWordCount = 10;
 		
 		Vector<IntWritable> tenOnes = new Vector<IntWritable>();
